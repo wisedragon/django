@@ -87,7 +87,7 @@ version = __import__('django').get_version()
 
 setup(
     name = "Django-ArrayAccum",
-    version = "1.0",
+    version = "0.9",
     #url = 'http://www.djangoproject.com/',
     author = 'Vijay Ragavan',
     author_email = 'vijay@moneychakra.com',
