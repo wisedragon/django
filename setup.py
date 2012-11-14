@@ -86,13 +86,13 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
 version = __import__('django').get_version()
 
 setup(
-    name = "Django",
-    version = version,
+    name = "Django-ArrayAccum",
+    version = "1.0",
     url = 'http://www.djangoproject.com/',
-    author = 'Django Software Foundation',
-    author_email = 'foundation@djangoproject.com',
-    description = 'A high-level Python Web framework that encourages rapid development and clean, pragmatic design.',
-    download_url = 'https://www.djangoproject.com/m/releases/1.4/Django-1.4.tar.gz',
+    author = 'Vijay Ragavan',
+    author_email = 'vijay@moneychakra.com',
+    description = "Fork of Django that allows you to use Postgres's array_accum function. It adds function ArrayAccum in django.db.models. Using ArrayAccum will only work on Postgresql.",
+    #download_url = 'https://www.djangoproject.com/m/releases/1.4/Django-1.4.tar.gz',
     packages = packages,
     cmdclass = cmdclasses,
     data_files = data_files,
