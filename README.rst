@@ -1,45 +1,21 @@
 Django is a high-level Python Web framework that encourages rapid development
-and clean, pragmatic design. Thanks for checking it out.
+and clean, pragmatic design. Djano-ArrayAccum is a fork which allows you to use the array_accum function available in Postgresql. This function will *NOT* work in other databases. If you are happy with Postgresql and want to be able to use the array_accum within Django (and not write custom sql) this fork is for you to try.
 
-All documentation is in the "docs" directory and online at
-http://docs.djangoproject.com/en/dev/. If you're just getting started, here's
-how we recommend you read the docs:
+This fork was created from Django-1.5 dev version around Nov 13th 2012 from the master branch. Will try to keep it up-to-date with django master. Feel free to remind me if it gets behind.
 
-* First, read docs/intro/install.txt for instructions on installing Django.
+This fork just modifies two files.
+1) django/db/models/aggregates.py
+2) django/db/models/sql/aggregates.py
+This adds a function called ArrayAccum which you can then use in any query involving aggregations (similar to Sum, Avg etc which are built-in).
 
-* Next, work through the tutorials in order (docs/intro/tutorial01.txt,
-  docs/intro/tutorial02.txt, etc.).
+Example Usage:
+Suppose you have a model defined as such:
+class People(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
 
-* If you want to set up an actual deployment server, read
-  docs/howto/deployment/index.txt for instructions.
+And lets say you want to show the most common last names, count, associated first names --- then here is how you can do it:
+from django.db.models import Count, ArrayAccum
+results = People.objects.values("last_name").annotate(count=Count('id'), unique_first_names=ArrayAccum("first_name", distinct=True)).order_by('-count')
 
-* You'll probably want to read through the topical guides (in docs/topics)
-  next; from there you can jump to the HOWTOs (in docs/howto) for specific
-  problems, and check out the reference (docs/ref) for gory details.
-
-* See docs/README for instructions on building an HTML version of the docs.
-
-Docs are updated rigorously. If you find any problems in the docs, or think they
-should be clarified in any way, please take 30 seconds to fill out a ticket
-here:
-
-http://code.djangoproject.com/newticket
-
-To get more help:
-
-* Join the #django channel on irc.freenode.net. Lots of helpful people hang out
-  there. Read the archives at http://django-irc-logs.com/.
-
-* Join the django-users mailing list, or read the archives, at
-  http://groups.google.com/group/django-users.
-
-To contribute to Django:
-
-* Check out http://www.djangoproject.com/community/ for information about
-  getting involved.
-
-To run Django's test suite:
-
-* Follow the instructions in the "Unit tests" section of
-  docs/internals/contributing/writing-code/unit-tests.txt, published online at
-  https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/#running-the-unit-tests
+Everything else is standard Django stuff version 1.5+. Django documentation is in the "docs" directory and online at http://docs.djangoproject.com/en/dev/.
