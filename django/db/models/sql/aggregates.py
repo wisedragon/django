@@ -2,11 +2,12 @@
 Classes to represent the default SQL aggregate functions
 """
 
-from django.db.models.fields import IntegerField, FloatField
+from django.db.models.fields import IntegerField, FloatField, CharField
 
 # Fake fields used to identify aggregate types in data-conversion operations.
 ordinal_aggregate_field = IntegerField()
 computed_aggregate_field = FloatField()
+list_aggregate_field = CharField() 
 
 class Aggregate(object):
     """
@@ -57,6 +58,8 @@ class Aggregate(object):
                 tmp = ordinal_aggregate_field
             elif getattr(tmp, 'is_computed', False):
                 tmp = computed_aggregate_field
+            elif getattr(tmp, 'is_list', False):
+                tmp = list_aggregate_field
             else:
                 tmp = tmp.source
 
@@ -102,6 +105,14 @@ class Max(Aggregate):
 
 class Min(Aggregate):
     sql_function = 'MIN'
+
+class ArrayAccum(Aggregate): #added by vijay
+    sql_function = 'ARRAY_ACCUM'
+    sql_template = '%(function)s(%(distinct)s%(field)s)'
+    is_list = True
+
+    def __init__(self, col, distinct=False, **extra):
+        super(ArrayAccum, self).__init__(col, distinct=distinct and 'DISTINCT ' or '', **extra)
 
 class StdDev(Aggregate):
     is_computed = True

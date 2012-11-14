@@ -65,3 +65,6 @@ class Sum(Aggregate):
 
 class Variance(Aggregate):
     name = 'Variance'
+
+class ArrayAccum(Aggregate): #added by vijay
+    name = 'ArrayAccum'
