@@ -87,12 +87,12 @@ version = __import__('django').get_version()
 
 setup(
     name = "Django-ArrayAccum",
-    version = "0.9",
+    version = "1.0",
     url = 'http://github.com/wisedragon/django',
     author = 'Vijay Ragavan',
     author_email = 'vijay@moneychakra.com',
     description = "Fork of Django that allows you to use Postgres's array_accum function. It adds function ArrayAccum in django.db.models. Using ArrayAccum will only work on Postgresql.",
-    download_url = 'http://pypi.python.org/packages/source/D/Django-ArrayAccum/Django-ArrayAccum-0.9.tar.gz',
+    download_url = 'http://pypi.python.org/packages/source/D/Django-ArrayAccum/Django-ArrayAccum-1.0.tar.gz',
     packages = packages,
     cmdclass = cmdclasses,
     data_files = data_files,
