@@ -26,4 +26,5 @@ And lets say you want to show the most common last names, count, associated firs
 Everything else is standard Django stuff version 1.5+. Django documentation is in the "docs" directory and online at http://docs.djangoproject.com/en/dev/.
 
 GitHub: http://github.com/wisedragon/django
+
 PyPi: http://pypi.python.org/pypi/Django-ArrayAccum/
