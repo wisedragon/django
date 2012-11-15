@@ -10,11 +10,13 @@ This adds a function called ArrayAccum which you can then use in any query invol
 
 Example Usage:
 Suppose you have a model defined as such::
+
     class People(models.Model):
         first_name = models.CharField(max_length=100)
         last_name = models.CharField(max_length=100)
 
 And lets say you want to show the most common last names, count, associated first names --- then here is how you can do it::
+
     from django.db.models import Count, ArrayAccum
     results = People.objects.values("last_name").annotate(count=Count('id'), unique_first_names=ArrayAccum("first_name", distinct=True)).order_by('-count')
 
