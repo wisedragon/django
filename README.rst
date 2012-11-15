@@ -1,7 +1,7 @@
 Django is a high-level Python Web framework that encourages rapid development
 and clean, pragmatic design. This fork (pkg name Django-ArrayAccum on pypi) allows you to use the array_accum function available in Postgresql. This function will *NOT* work in other databases. If you are happy with Postgresql and want to be able to use the array_accum within Django (and not write custom sql) this fork is for you to try.
 
-This fork was created from Django-1.5 dev version around Nov 13th 2012 from the master branch. Will try to keep it up-to-date with django master. Feel free to remind me if it gets behind.
+This fork was created from Django-1.5 dev version from the master branch. Will try to keep it up-to-date with django master. Feel free to remind me if it gets behind.
 
 This fork just modifies two files.
 
